@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49b31f4209eb5704d8ace6c0a52692a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 757eb752220d4ad469f5c6d040e957c6, type: 3}
   m_Name: BoardSettings
   m_EditorClassIdentifier: Assembly-CSharp::BoardSettings
   layer: 1
