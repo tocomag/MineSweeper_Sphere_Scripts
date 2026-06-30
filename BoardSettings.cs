@@ -12,4 +12,6 @@ public class BoardSettings : ScriptableObject
     public int playerDamage;
     public int mineDamage;
     public int availableFlags;
+    public float otherAlpha = 0.1f; // 現在の層以外のマスの不透明度
+    public float currentAlpha = 1.0f; // 現在の層の不透明度
 }
