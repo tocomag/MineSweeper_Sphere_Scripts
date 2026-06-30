@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 public class BoardService
 {
     private BoardSettings stgs;
     private Board board;
     private int usedFlags;
+    public event Action<Cell> OnCellProccessed;
     public BoardService(BoardSettings stgs, Board board)
     {
         this.stgs = stgs;
@@ -33,6 +35,7 @@ public class BoardService
                「周囲のマスの取得」「周囲の８マスの上のマスの判定」
             */
         }
+        OnCellProccessed?.Invoke(cell);
     }
     public void SetFlag(int id)
     {
@@ -42,12 +45,14 @@ public class BoardService
         if (usedFlags >= stgs.availableFlags) return;
         cell.isFlagged = true;
         usedFlags++;
+        OnCellProccessed?.Invoke(cell);
     }
     public void GetDamaged(Cell cell, int damage)
     {
         if (cell.health <= 0) return;
         cell.health -= damage;
         if (cell.health <= 0) cell.isRevealed = true;
+        OnCellProccessed?.Invoke(cell);
     }
     // 盤面の内部データに対する処理を書いていく
 }
