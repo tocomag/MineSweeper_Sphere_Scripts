@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     public ViewService vService;
     public Rock rock;
     public int currentLayer;
+    public event Action OnLayerChanged;
     void Awake()
     {
         rock.OnGogglesaAccessd += ChangeCurrentLayer;
@@ -28,15 +30,10 @@ public class GameManager : MonoBehaviour
     }
     private void ChangeCurrentLayer(string direction)
     {
-        if (direction == "Go Up")
-        {
-            currentLayer++;
-            return;
-        }
-        if (direction == "Go Down")
-        {
-            currentLayer--;
-            return;
-        }
+        if (direction == "Go Up") currentLayer++;
+        if (direction == "Go Down") currentLayer--;
+        currentLayer = Mathf.Max(0, currentLayer);
+        currentLayer = Mathf.Min(currentLayer, stgs.layer - 1);
+        OnLayerChanged?.Invoke();
     }
 }

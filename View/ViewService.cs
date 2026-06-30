@@ -13,6 +13,7 @@ public class ViewService
         this.bService = bService;
         bService.OnCellProccessed += UpdateView;
         this.gm = gm;
+        gm.OnLayerChanged += EmphasizeCurrentLayer;
     }
     // Viewに対する処理を書いていく
     private void UpdateView(Cell cell)
