@@ -25,8 +25,8 @@ public class ViewFactory
                     {
                         Vector3 cPos = GetPositionOnCube((Face)f, s1, s2);
                         Vector3 sPos = CubeToSphere(cPos);
-                        sPos += origin.transform.position;
                         sPos *= localRadius;
+                        sPos += origin.transform.position;
                         GameObject obj = MonoBehaviour.Instantiate(prefab, sPos, Quaternion.identity,origin.transform);
                         CellView view = obj.GetComponent<CellView>();
                         int id = l * stgs.face * stgs.size * stgs.size +

@@ -48,6 +48,7 @@ public class BoardFactory
             cell.isMine = true;
             mines.Add(cell);
             // 周囲のマスの「周囲の地雷数」を+1
+            // ※境界線及び角のマスの周囲のマスの取得は実装は不具合が生じる
             for (int i = 0; i < neighbors.GetLength(0); i++)
             {
                 int nx = x + neighbors[i, 0];

@@ -11,4 +11,5 @@ public class BoardSettings : ScriptableObject
     public int cellHealth;
     public int playerDamage;
     public int mineDamage;
+    public int availableFlags;
 }
