@@ -10,14 +10,16 @@ public class GameManager : MonoBehaviour
     public BoardService bService;
     public BoardView boardView;
     public ViewService vService;
-    public HandAction handAction;
+    public HandAction leftHandAction;
+    public HandAction rightHandAction;
     public Hammer hammer;
     public int currentLayer { get; private set; }
     public event Action OnLayerChanged;
     void Awake()
     {
         currentLayer = 0;
-        handAction.OnGogglesAccessed += ChangeCurrentLayer;
+        leftHandAction.OnGogglesAccessed += ChangeCurrentLayer;
+        rightHandAction.OnGogglesAccessed += ChangeCurrentLayer;
         BoardFactory bFactory = new BoardFactory(stgs);
         board = bFactory.CreateBoard();
         bService = new BoardService(stgs, board, hammer);
@@ -27,7 +29,8 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        handAction.MoveLayer();
+        leftHandAction.MoveLayer();
+        rightHandAction.MoveLayer();
     }
     private void ChangeCurrentLayer(string direction)
     {
