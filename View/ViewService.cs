@@ -21,28 +21,28 @@ public class ViewService
         CellView view = boardView.views[cell.id];
         if (cell.health == 1)
         {
-            // Textを壊れる直前であることを示す！マークに変える
+            view.vText.text = "!"; // Textを壊れる直前であることを示す！マークに変える
             return;
         }
         if (cell.isMine && cell.isRevealed)
         {
             view.vMRen.enabled = false;
             view.vCol.enabled = false;
-            // Textを地雷のマークに変える
+            view.vText.text = "X";// Textを地雷のマークに変える
             return;
         }
         if (cell.isRevealed)
         {
             view.vMRen.enabled = false;
             view.vCol.enabled = false;
-            // Textを周囲の地雷数に変える
+            view.vText.text = cell.aroundMineCount.ToString(); // Textを周囲の地雷数に変える
             return;
         }
         if (cell.isFlagged)
         {
             view.vMRen.enabled = false;
             view.vCol.enabled = false;
-            // Textを旗のマークに変える
+            view.vText.text = "P"; // Textを旗のマークに変える
             return;
         }
     }
