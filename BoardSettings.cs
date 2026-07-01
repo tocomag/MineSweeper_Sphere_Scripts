@@ -14,4 +14,6 @@ public class BoardSettings : ScriptableObject
     public int availableFlags;
     public float otherAlpha = 0.1f; // 現在の層以外のマスの不透明度
     public float currentAlpha = 1.0f; // 現在の層の不透明度
+    public float requiredImpactForce; // ハンマーでマスをたたくのに必要な衝撃
+    public bool isRightHanded; // 右利きかどうか
 }

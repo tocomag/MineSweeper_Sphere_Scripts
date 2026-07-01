@@ -2,8 +2,8 @@ using TMPro;
 using UnityEngine;
 public class ViewService
 {
-    private BoardView boardView;
     private BoardSettings stgs;
+    private BoardView boardView;
     private BoardService bService;
     private GameManager gm;
     public ViewService(BoardSettings stgs, BoardView boardView, BoardService bService, GameManager gm)
@@ -11,8 +11,8 @@ public class ViewService
         this.stgs = stgs;
         this.boardView = boardView;
         this.bService = bService;
-        bService.OnCellProccessed += UpdateView;
         this.gm = gm;
+        bService.OnCellProccessed += UpdateView;
         gm.OnLayerChanged += EmphasizeCurrentLayer;
     }
     // Viewに対する処理を書いていく

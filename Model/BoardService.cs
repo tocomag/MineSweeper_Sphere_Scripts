@@ -5,11 +5,14 @@ public class BoardService
     private BoardSettings stgs;
     private Board board;
     private int usedFlags;
+    private Hammer hammer;
     public event Action<Cell> OnCellProccessed;
-    public BoardService(BoardSettings stgs, Board board)
+    public BoardService(BoardSettings stgs, Board board, Hammer hammer)
     {
         this.stgs = stgs;
         this.board = board;
+        this.hammer = hammer;
+        hammer.OnHammerHit += Open;
     }
     public void Open(int id)
     {
@@ -35,7 +38,7 @@ public class BoardService
                「周囲のマスの取得」「周囲の８マスの上のマスの判定」
             */
         }
-        OnCellProccessed?.Invoke(cell);
+        OnCellProccessed?.Invoke(cell); // Viewに処理したマスの状態を通知
     }
     public void SetFlag(int id)
     {
@@ -45,14 +48,13 @@ public class BoardService
         if (usedFlags >= stgs.availableFlags) return;
         cell.isFlagged = true;
         usedFlags++;
-        OnCellProccessed?.Invoke(cell);
+        OnCellProccessed?.Invoke(cell); // Viewに処理したマスの状態を通知
     }
     public void GetDamaged(Cell cell, int damage)
     {
         if (cell.health <= 0) return;
         cell.health -= damage;
         if (cell.health <= 0) cell.isRevealed = true;
-        OnCellProccessed?.Invoke(cell);
+        OnCellProccessed?.Invoke(cell); // Viewに処理したマスの状態を通知
     }
-    // 盤面の内部データに対する処理を書いていく
 }
