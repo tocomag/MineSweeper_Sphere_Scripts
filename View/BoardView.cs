@@ -1,8 +1,9 @@
+using UnityEngine;
 public class BoardView
 {
-    public CellView[] views;
-    public BoardView(CellView[] views)
+    public GameObject[] objs;
+    public BoardView(GameObject[] objs)
     {
-        this.views = views;
+        this.objs = objs;
     }
 }

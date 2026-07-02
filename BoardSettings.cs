@@ -16,4 +16,5 @@ public class BoardSettings : ScriptableObject
     public float currentAlpha = 1.0f; // 現在の層の不透明度
     public float requiredImpactForce; // ハンマーでマスをたたくのに必要な衝撃
     public bool isRightHanded; // 右利きかどうか
+    public float minDistance; // マス同士の最小距離
 }
