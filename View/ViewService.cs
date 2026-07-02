@@ -18,7 +18,8 @@ public class ViewService
     // Viewに対する処理を書いていく
     private void UpdateView(Cell cell)
     {
-        CellView view = boardView.views[cell.id];
+        GameObject obj = boardView.objs[cell.id];
+        CellView view = obj.GetComponent<CellView>();
         if (cell.health == 1)
         {
             view.vText.text = "!"; // Textを壊れる直前であることを示す！マークに変える
@@ -48,8 +49,9 @@ public class ViewService
     }
     private void EmphasizeCurrentLayer()
     {
-        foreach (CellView view in boardView.views)
+        foreach (GameObject obj in boardView.objs)
         {
+            CellView view = obj.GetComponent<CellView>();
             int layer = view.id / (stgs.face * stgs.size * stgs.size);
             if (layer != gm.currentLayer)
             {

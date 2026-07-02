@@ -5,7 +5,7 @@ public class Hammer : MonoBehaviour
 {    
     [SerializeField] private BoardSettings stgs;
     private bool isTouching;
-    public event Action<int> OnHammerHit;
+    public event Action<GameObject> OnHammerHit;
     private void OnCollisionEnter(Collision collision)
     {
         // 衝撃が小さい場合は無視
@@ -15,9 +15,9 @@ public class Hammer : MonoBehaviour
         if (isTouching) return;
         isTouching = true;
 
-        CellView view = collision.collider.gameObject.GetComponent<CellView>();
-        if (view == null) return;
-        OnHammerHit?.Invoke(view.id); // Modelにハンマーと衝突したマスのIDを通知
+        GameObject obj = collision.collider.gameObject;
+        if (obj == null) return;
+        OnHammerHit?.Invoke(obj); // Modelにハンマーと衝突したマスのGameObjectを通知
     }
     private void OnCollisionExit(Collision collision)
     {
